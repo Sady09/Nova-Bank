@@ -9,7 +9,7 @@ import lombok.Setter;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private String id;
 
     @Getter
@@ -30,6 +30,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Getter
     @OneToOne(mappedBy = "user")
     private Account account;
 }
