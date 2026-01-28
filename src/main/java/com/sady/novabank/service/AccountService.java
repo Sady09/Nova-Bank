@@ -20,13 +20,13 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public void createAccount(String userId){
+    public Account createAccount(String userId){
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
 
 
         if(user.getAccount() != null){
-            throw new RuntimeException("usuario ja possui uma conta");
+            throw new RuntimeException("Usuario ja possui uma conta");
         }
 
         Account account = new Account();
@@ -37,7 +37,6 @@ public class AccountService {
 
         accountRepository.save(account);
 
-
-
+        return account;
     }
 }
