@@ -1,16 +1,23 @@
 package com.sady.novabank.service;
 
+import com.sady.novabank.dto.UserResponse;
 import com.sady.novabank.model.User;
 import com.sady.novabank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public List<User> getUser(){
+        return userRepository.findAll();
+    }
 
     public User createUser(String name, String cpf, String email, String password){
         if(userRepository.existsByEmail(email)){

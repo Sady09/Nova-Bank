@@ -1,8 +1,8 @@
 package com.sady.novabank.dto;
 
-public record CreateUserRequest(
+public record UserResponse(
+        String id,
         String name,
-        String cpf,
         String email,
-        String password
+        String cpf
 ) {}

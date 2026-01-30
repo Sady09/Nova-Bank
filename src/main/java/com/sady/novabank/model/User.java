@@ -20,6 +20,7 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    @Getter
     @Setter
     @Column(nullable = false, unique = true)
     private String cpf;
