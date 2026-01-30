@@ -19,6 +19,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User getUserById(String id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id nao pertence a nenhum usuario"));
+    }
+
     public User createUser(String name, String cpf, String email, String password){
         if(userRepository.existsByEmail(email)){
             throw new RuntimeException("Email ja cadastrado");
