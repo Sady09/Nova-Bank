@@ -1,5 +1,6 @@
 package com.sady.novabank.service;
 
+import com.sady.novabank.dto.CreateUserRequest;
 import com.sady.novabank.dto.UserResponse;
 import com.sady.novabank.model.User;
 import com.sady.novabank.repository.UserRepository;
@@ -24,22 +25,22 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Id nao pertence a nenhum usuario"));
     }
 
-    public User createUser(String name, String cpf, String email, String password){
-        if(userRepository.existsByEmail(email)){
+    public User createUser(CreateUserRequest request){
+        if(userRepository.existsByEmail(request.email())){
             throw new RuntimeException("Email ja cadastrado");
         }
 
-        if(userRepository.existsByCpf(cpf)){
+        if(userRepository.existsByCpf(request.cpf())){
             throw new RuntimeException("Cpf ja cadastrado");
         }
 
         var encoder = new BCryptPasswordEncoder();
-        String hashedPassword = encoder.encode(password);
+        String hashedPassword = encoder.encode(request.password());
 
         User user = new User();
-        user.setName(name);
-        user.setCpf(cpf);
-        user.setEmail(email);
+        user.setName(request.name());
+        user.setEmail(request.email());
+        user.setCpf(request.cpf());
         user.setPassword(hashedPassword);
 
         return userRepository.save(user);

@@ -2,7 +2,7 @@ package com.sady.novabank.dto;
 
 public record CreateUserRequest(
         String name,
-        String cpf,
         String email,
+        String cpf,
         String password
 ) {}

@@ -48,12 +48,7 @@ public class UserController {
 
     @PostMapping("/")
     public User createUser(@RequestBody CreateUserRequest createUserRequest){
-        return userService.createUser(
-                createUserRequest.name(),
-                createUserRequest.email(),
-                createUserRequest.cpf(),
-                createUserRequest.password()
-        );
+        return userService.createUser(createUserRequest);
     }
 
 }
